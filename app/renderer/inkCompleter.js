@@ -51,8 +51,22 @@ function getAllVariableSuggestions(inkFiles) {
     return suggestions;
 }
 
+let showVocab = true;
+exports.showVocab = {
+    set: function (value) {
+        showVocab = value;
+        console.log("showVocab set to " + showVocab);
+    },
+    get: function () {
+        return showVocab;
+    }
+};
+
 // Helper function that generates suggestions for all the vocabulary
 function getAllVocabSuggestions(inkFiles) {
+    console.log("showVocab = " + showVocab);
+    if(!showVocab) return "";
+
     const vocabWords = getAllVocabWords(inkFiles);
     const suggestions = [];
     for (const vocabWord of vocabWords) {
@@ -64,6 +78,7 @@ function getAllVocabSuggestions(inkFiles) {
     }
     return suggestions;
 }
+
 
 exports.inkCompleter = {
     inkFiles: [],

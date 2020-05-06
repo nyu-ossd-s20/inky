@@ -9,6 +9,7 @@ const appmenus = require('./appmenus.js');
 const forceQuitDetect = require('./forceQuitDetect');
 const Inklecate = require("./inklecate.js").Inklecate;
 
+
 function inkJSNeedsUpdating() {
     return false;
     // dialog.showMessageBox({
@@ -123,6 +124,9 @@ app.on('ready', function () {
           theme = newTheme;
           AboutWindow.changeTheme(newTheme);
           DocumentationWindow.changeTheme(newTheme);
+        },
+        toggleVocabSuggestions: (item) => {
+            require('./../renderer/inkCompleter.js').showVocab.set(item.checked);
         }
     });
 

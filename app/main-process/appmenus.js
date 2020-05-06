@@ -177,6 +177,12 @@ function setupMenus(callbacks) {
                         label: 'Word count and more',
                         enabled: callbacks.isFocusedWindow,
                         click: callbacks.stats
+                },
+                {
+                    label: 'Suggest vocabulary',
+                    type: "checkbox",
+                    checked: true,
+                    click: callbacks.toggleVocabSuggestions
                 }
             ]
         },
@@ -186,7 +192,7 @@ function setupMenus(callbacks) {
                 // Filled in by the code at the bottom from the content in inkSnippets.js
             ]
         },
-        
+
         {
             label: 'Window',
             role: 'window',
@@ -325,7 +331,7 @@ function setupMenus(callbacks) {
             });
             continue;
         }
-        
+
         // Main categories
         var items = category.snippets.map(snippet => {
             if( snippet.separator ) {
@@ -338,9 +344,9 @@ function setupMenus(callbacks) {
                     click: (item, focussedWindow) => callbacks.insertSnippet(focussedWindow, snippet.ink)
                 }
             }
-            
+
         });
-        
+
         inkSubMenu.push({
             label: category.categoryName,
             submenu: items
