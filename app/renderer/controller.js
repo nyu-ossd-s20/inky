@@ -82,9 +82,12 @@ NavHistory.setEvents({
 
 LiveCompiler.setEvents({
     resetting: (sessionId) => {
+        
+    },
+    compileComplete: (sessionId) => {
+        PlayerView.prepareForNewPlaythrough(sessionId);
         EditorView.clearErrors();
         ToolbarView.clearIssueSummary();
-        PlayerView.prepareForNewPlaythrough(sessionId);
     },
     selectIssue: gotoIssue,
     textAdded: (text) => {
