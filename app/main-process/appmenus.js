@@ -6,6 +6,7 @@ const _ = require("lodash");
 const Menu = electron.Menu;
 const ProjectWindow = require("./projectWindow.js").ProjectWindow;
 const inkSnippets = require("./inkSnippets.js").snippets;
+const completer = require('./../renderer/inkCompleter.js');
 
 function setupMenus(callbacks) {
     let themes = [];
@@ -179,10 +180,13 @@ function setupMenus(callbacks) {
                         click: callbacks.stats
                 },
                 {
-                    label: 'Suggest vocabulary',
+                    label: 'Autocomplete vocabulary',
                     type: "checkbox",
                     checked: true,
-                    click: callbacks.toggleVocabSuggestions
+                    click(item) {
+                        console.log("clicked, value is " + item.checked);
+                        completer.toggleVocab(item.checked);
+                    }
                 }
             ]
         },

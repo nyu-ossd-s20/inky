@@ -124,9 +124,6 @@ app.on('ready', function () {
           theme = newTheme;
           AboutWindow.changeTheme(newTheme);
           DocumentationWindow.changeTheme(newTheme);
-        },
-        toggleVocabSuggestions: (item) => {
-            require('./../renderer/inkCompleter.js').showVocab.set(item.checked);
         }
     });
 

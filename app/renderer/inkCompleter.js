@@ -52,19 +52,26 @@ function getAllVariableSuggestions(inkFiles) {
 }
 
 let showVocab = true;
-exports.showVocab = {
-    set: function (value) {
-        showVocab = value;
-        console.log("showVocab set to " + showVocab);
-    },
-    get: function () {
-        return showVocab;
-    }
+
+function enableVocabSuggestions(enable) {
+    console.log("showVocab is " + showVocab);
+    console.log("Trying to set to" + enable);
+    showVocab = enable;
+    console.log("showVocab toggled to " + showVocab);
+    console.log("getVocabValue gives: " + getVocabValue());
+}
+
+function getVocabValue() {
+    return showVocab;
+}
+
+exports.toggleVocab = (value) => {
+    enableVocabSuggestions(value);
 };
 
 // Helper function that generates suggestions for all the vocabulary
 function getAllVocabSuggestions(inkFiles) {
-    console.log("showVocab = " + showVocab);
+    console.log("showVocab = " + getVocabValue());
     if(!showVocab) return "";
 
     const vocabWords = getAllVocabWords(inkFiles);
